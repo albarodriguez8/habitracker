@@ -6,20 +6,7 @@
 <body>
 	<h1>Hábitos</h1>
 	<?php
-
-	    // Credenciales base de datos
-	    $servername = "localhost";
-	    $username = "alan";
- 	    $password = "turing";
-
-	    // Crear Conexion MySql
-	    $conn = mysqli_connect($servername, $username, $password, "ENIGMA");
-
-	   // Comprobar conexion, si falla mostrar error
- 	   if (!$conn) {
-	      die('<p>Fallou a conexion con la base de dato: </p>' . mysqli_connect_error());
-	   }
- 	   echo '<p>Conexion Ok!</p>';
+	include './database.php';
 
 	  // Crear nuevo habito (resposta del POST)
 	   if(isset($_POST["nombre"])){
@@ -43,11 +30,11 @@
 	   $habitos = mysqli_query($conn, $lectura);
 	   echo "Número de Hábitos: " . mysqli_num_rows($habitos) . "<br>";	   
 	   while($hab = mysqli_fetch_array($habitos)){
-	   	echo $hab['ID'] . " - " . $hab['Nombre'] . "<a href=\"/habitos.php?borrar=" . $hab['ID'] . "\"><i class=\"fas fa-trash-alt\"></i><br></a>";
+	   	echo $hab['ID'] . " - " . $hab['Nombre'] . "<a href=\"habitos.php?borrar=" . $hab['ID'] . "\"><i class=\"fas fa-trash-alt\"></i><br></a>";
 	   }
 	?>
 	<p>Si necesitas ayuda, lee <a href="https://google.es/" target=_blank>esto</a>
-	<form name="habito" method="post" action="/habitos.php">
+	<form name="habito" method="post" action="habitos.php">
 	    <input type="text" id="name" name="nombre">
 	    <button id="Guardar" type="submit">Guardar</button>
 	</form>
