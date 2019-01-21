@@ -1,7 +1,8 @@
 <html>
 <head>
 	<title>Hábitos</title>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 </head>
 <body>
 	<h1>Hábitos</h1>
@@ -28,15 +29,22 @@
 	<?php
 	   $lectura = "SELECT * FROM habitos;";
 	   $habitos = mysqli_query($conn, $lectura);
-	   echo "Número de Hábitos: " . mysqli_num_rows($habitos) . "<br>";	   
-	   while($hab = mysqli_fetch_array($habitos)){
-	   	echo $hab['ID'] . " - " . $hab['Nombre'] . "<a href=\"habitos.php?borrar=" . $hab['ID'] . "\"><i class=\"fas fa-trash-alt\"></i><br></a>";
-	   }
+
+	   if (mysqli_num_rows($habitos) > 0) {	
+		echo "<ul class=\"list-group\">";
+	   	while($hab = mysqli_fetch_array($habitos)){
+	   		echo "<li class=\"list-group-item\">" . $hab['Nombre'] . " <a href=\"habitos.php?borrar=" . $hab['ID'] . "\"><i class=\"fas fa-trash-alt\"></i></a></li>";
+	   	}
+		echo "</ul>";
+	   } else {
+		echo "Aun no se creo ningun habito";
+	}
+
 	?>
 	<p>Si necesitas ayuda, lee <a href="https://google.es/" target=_blank>esto</a>
 	<form name="habito" method="post" action="habitos.php">
 	    <input type="text" id="name" name="nombre">
-	    <button id="Guardar" type="submit">Guardar</button>
+	    <button type="submit" class="btn btn-info">Guardar</button>
 	</form>
 
 </body>
