@@ -14,11 +14,12 @@
 	<table class="table">
 	   <tr>
 		<td></td>
-		<td>Lunes</td>
-		<td>Martes</td>
-		<td>Miércoles</td>
-		<td>Jueves</td>
-		<td>Viernes</td>
+		<?php
+		    $hoy = mktime(0,0,0);
+		    for ($t=4; $t>=0; $t--) {
+		    	echo "<td>" . date('j/n/Y', $hoy-$t*24*60*60) . "</td>";
+		    }
+		?>
 	   </tr>
 	   <?php
 		while ($hab = mysqli_fetch_array($habitos)) {
