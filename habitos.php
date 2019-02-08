@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
 <body>
-	<h1>Hábitos</h1>
+	
 	<?php
 	include './database.php';
 
@@ -26,6 +26,30 @@
 	  }
 	?>
 
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#">Habit Tracker</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item active">
+			    <a class="nav-link" href="#">Hábitos</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="registro.php">Registro</a>
+			  </li>
+			</ul>
+		  </div>
+		</nav>
+		<table class="table table-bordered table-striped">
+			<tr>
+			<td></td>
+	  	</thead>
+		<h3>Hábitos</h3>
 	<?php
 	   $lectura = "SELECT * FROM habitos;";
 	   $habitos = mysqli_query($conn, $lectura);
@@ -33,7 +57,7 @@
 	   if (mysqli_num_rows($habitos) > 0) {	
 		echo "<ul class=\"list-group\">";
 	   	while($hab = mysqli_fetch_array($habitos)){
-	   		echo "<li class=\"list-group-item\">" . $hab['Nombre'] . " <a href=\"habitos.php?borrar=" . $hab['ID'] . "\"><i class=\"fas fa-trash-alt\"></i></a></li>";
+	   		echo "<li class=\"list-group-item\">" . $hab['Nombre'] . " <a href=\"habitos.php?borrar=" . $hab['ID'] . "\"><i class=\"fas fa-trash-alt\" style =\"color: red;\"></i></a></li>";
 	   	}
 		echo "</ul>";
 	   } else {
