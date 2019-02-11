@@ -45,8 +45,6 @@
 			</ul>
 		  </div>
 		</nav>
-		<table class="table table-bordered table-striped">
-			<tr>
 			<td></td>
 	  	</thead>
 		<h3>Hábitos</h3>
