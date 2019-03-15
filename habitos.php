@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Hábitos</title>
+	<link rel="stylesheet" href="style.css" type="text/css"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
@@ -17,7 +18,7 @@
 		echo "<p>Hábito" . $_POST["nombre"] . " creado</p>";
 	   }
 
-	  // Borrar hábito (respuesta al GET con parametros)
+	  // Borrar hábito
 	  if (isset($_REQUEST["borrar"])) {
 		$delete = "DELETE FROM habitos WHERE ID=" . $_REQUEST["borrar"] . ";";
 		$result = mysqli_query($conn, $delete);
@@ -34,7 +35,7 @@
 		  <div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 			  <li class="nav-item">
-			    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			    <a class="nav-link" href="#">Análisis <span class="sr-only">(current)</span></a>
 			  </li>
 			  <li class="nav-item active">
 			    <a class="nav-link" href="#">Hábitos</a>
@@ -44,13 +45,14 @@
 			  </li>
 			</ul>
 		  </div>
+			<i class="far fa-user-circle fa-2x" style="color: white;"></i>
 		</nav>
 			<td></td>
 	  	</thead>
 		<h3>Hábitos</h3>
 	<?php
-	   $lectura = "SELECT * FROM habitos;";
-	   $habitos = mysqli_query($conn, $lectura);
+
+	   $habitos = gethabitos();
 
 	   if (mysqli_num_rows($habitos) > 0) {	
 		echo "<ul class=\"list-group\">";
